@@ -23,16 +23,8 @@ public class TesteGoogleCloud {
             GoogleCloudStorageService storage =
                 new GoogleCloudStorageService();
 
-            System.out.println("Testando conexão com o bucket...");
-
-            if (!storage.testarConexao()) {
-                System.out.println("ERRO: bucket não encontrado.");
-                return;
-            }
-
-            System.out.println("Conexão estabelecida!");
-
-            System.out.println("Enviando imagem...");
+            System.out.println("Credenciais carregadas.");
+            System.out.println("Tentando enviar a imagem para o bucket...");
 
             String nomeObjeto = storage.enviarImagem(
                 caminhoImagem,
@@ -46,10 +38,16 @@ public class TesteGoogleCloud {
 
             System.out.println("URL da imagem: " + url);
 
+            System.out.println("Verificando se a imagem existe...");
+
             if (storage.imagemExiste(nomeObjeto)) {
-                System.out.println("CONFIRMADO: imagem armazenada no bucket!");
+                System.out.println(
+                    "CONFIRMADO: imagem armazenada no bucket!"
+                );
             } else {
-                System.out.println("ATENÇÃO: não foi possível confirmar a imagem.");
+                System.out.println(
+                    "ATENÇÃO: não foi possível confirmar a imagem."
+                );
             }
 
         } catch (Exception e) {
