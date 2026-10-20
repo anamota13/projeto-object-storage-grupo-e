@@ -1,0 +1,9 @@
+# Credenciais do Google Cloud
+config/
+sa-grupo-e-key.json
+**/sa-grupo-e-key(1).json
+
+# Banco local e arquivos gerados
+*.db
+*.db-journal
+target/
