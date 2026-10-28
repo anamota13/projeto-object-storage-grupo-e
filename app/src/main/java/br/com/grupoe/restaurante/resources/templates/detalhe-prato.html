@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Prato</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .galeria { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
+        .galeria img { width: 100px; height: 100px; object-fit: cover; border-radius: 4px; border: 2px solid #ccc; }
+        .destaque { width: 300px; height: 200px; object-fit: cover; border-radius: 8px; }
+        a { text-decoration: none; color: #2980b9; }
+    </style>
+</head>
+<body>
+    <h1 th:text="${prato.nome}">Nome do Prato</h1>
+    <p><strong>Descrição:</strong> <span th:text="${prato.descricao}"></span></p>
+    <p><strong>Preço:</strong> R$ <span th:text="${prato.preco}"></span></p>
+
+    <h3>Imagem Principal em Destaque</h3>
+    <img class="destaque" th:src="${prato.urlImagemPrincipal}" alt="Imagem Principal"/>
+
+    <h3>Galeria de Fotos</h3>
+    <div class="galeria">
+        <div th:each="img : ${imagens}">
+            <img th:src="${img.urlPublica}" alt="Foto da Galeria"/>
+        </div>
+    </div>
+
+    <br><br>
+    <a href="/pratos">Voltar ao Cardápio</a>
+</body>
+</html>

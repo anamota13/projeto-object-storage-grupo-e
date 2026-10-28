@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cardápio - Restaurante Grupo E</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
+        .grid { display: flex; flex-wrap: wrap; gap: 20px; }
+        .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; width: 250px; padding: 15px; box-shadow: 2px 2px 5px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 150px; object-fit: cover; border-radius: 4px; }
+        .preco { color: #27ae60; font-weight: bold; }
+        a { text-decoration: none; color: #2980b9; }
+    </style>
+</head>
+<body>
+    <h1>Cardápio do Restaurante (Grupo E)</h1>
+    <div class="grid">
+        <div class="card" th:each="p : ${pratos}">
+            <!-- Exibe a miniatura da imagem principal a partir da URL pública do bucket -->
+            <img th:src="${p.urlImagemPrincipal}" alt="Foto do Prato"/>
+            <h3 th:text="${p.nome}">Nome do Prato</h3>
+            <p th:text="${p.descricao}">Descrição breve...</p>
+            <p class="preco">R$ <span th:text="${p.preco}">0.00</span></p>
+            <a th:href="@{/pratos/{id}(id=${p.id})}">Ver Detalhes & Galeria</a>
+        </div>
+    </div>
+</body>
+</html>

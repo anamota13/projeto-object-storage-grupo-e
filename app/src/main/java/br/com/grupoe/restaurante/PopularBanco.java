@@ -1,4 +1,3 @@
-
 package br.com.grupoe.restaurante;
 
 import br.com.grupoe.restaurante.database.Database;
@@ -37,8 +36,9 @@ public class PopularBanco {
                 String pasta = String.format("prato-%02d", i);
 
                 for (int j = 1; j <= 3; j++) {
+                    // Corrigido para procurar dentro de "app/imagens"
                     Path arquivo = Path.of(
-                        "imagens", pasta, j + ".jpg"
+                        "app", "imagens", pasta, j + ".jpg"
                     );
 
                     if (!Files.isRegularFile(arquivo)) {
@@ -49,7 +49,7 @@ public class PopularBanco {
                 }
             }
 
-           System.out.println("Iniciando preparacao dos uploads...");
+            System.out.println("Iniciando preparacao dos uploads...");
             Database.inicializar();
 
             PratoRepository pratoRepo = new PratoRepository();
@@ -63,7 +63,6 @@ public class PopularBanco {
                 String nome = DADOS[i][0];
                 String descricao = DADOS[i][1];
                 BigDecimal preco = new BigDecimal(DADOS[i][2]);
-
             
                 Prato prato = pratoRepo.listar()
                     .stream()
@@ -107,8 +106,9 @@ public class PopularBanco {
                         "prato-%02d", i + 1
                     );
 
+                    // Corrigido para procurar dentro de "app/imagens"
                     Path arquivo = Path.of(
-                        "imagens", pasta, j + ".jpg"
+                        "app", "imagens", pasta, j + ".jpg"
                     );
 
                     boolean principal = (j == 1);
@@ -121,6 +121,7 @@ public class PopularBanco {
                         "Imagem " + j + " enviada: " + nome
                     );
                 }
+                
                 List<Imagem> imagens =
                     imagemRepo.listarPorPrato(pratoId);
 
